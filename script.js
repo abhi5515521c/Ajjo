@@ -1,5 +1,10 @@
-// Initialize Socket.io
-const socket = io(window.location.origin);
+// 📡 Socket.io Initialization
+// Replace 'https://your-railway-url.up.railway.app' with your actual Railway URL after deploying!
+const SOCKET_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    ? window.location.origin 
+    : 'https://ajjo-production.up.railway.app'; 
+
+const socket = io(SOCKET_URL);
 const ROOM_CODE = 'ajjjo-abhijeet-jenny';
 
 let myIdentity = ''; // 'ABHIJEET' or 'JENNY'
