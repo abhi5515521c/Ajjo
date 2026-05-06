@@ -1,8 +1,8 @@
 // 📡 Socket.io Initialization
 // Replace 'https://your-railway-url.up.railway.app' with your actual Railway URL after deploying!
-const SOCKET_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-    ? window.location.origin 
-    : 'https://ajjo-production.up.railway.app'; 
+const SOCKET_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? window.location.origin
+    : 'https://ajjo-1.onrender.com/';
 
 const socket = io(SOCKET_URL);
 const ROOM_CODE = 'ajjjo-abhijeet-jenny';
@@ -41,20 +41,20 @@ entryKeyInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') login
 function setupApp() {
     loginOverlay.style.display = 'none';
     mainApp.style.display = 'flex';
-    
+
     document.getElementById('myNameLabel').innerText = myIdentity;
     document.getElementById('partnerNameLabel').innerText = partnerIdentity;
     document.getElementById('chatPartnerName').innerText = partnerIdentity;
     document.getElementById('phoneFromName').innerText = `💌 from: ${partnerIdentity}`;
     document.getElementById('welcomeNames').innerText = `${myIdentity} & ${partnerIdentity}`;
-    
+
     document.getElementById('myAvatar').innerText = myIdentity === 'ABHIJEET' ? '🐰' : '🐻';
     document.getElementById('partnerAvatar').innerText = '😴';
     document.getElementById('chatAvatarEmoji').innerText = partnerIdentity === 'ABHIJEET' ? '🐰' : '🐻';
 
     socket.emit('join-room', ROOM_CODE);
     syncAction('PARTNER_ONLINE');
-    
+
     spawnHeartsLocal(window.innerWidth / 2, window.innerHeight / 2);
 }
 
@@ -69,7 +69,7 @@ function showNotif(title, subtitle) {
     mainNotif.querySelector('.notif-subtitle').innerText = subtitle;
     mainNotif.classList.add('active');
     setTimeout(() => mainNotif.classList.remove('active'), 5000);
-    
+
     // Play a little sound effect feel with hearts
     spawnHeartsLocal(window.innerWidth / 2, 100);
 }
@@ -164,10 +164,10 @@ function requestMoney() {
 function handleGive(amount, reqId) {
     const item = document.getElementById(`req-${reqId}`);
     if (item) item.remove();
-    
+
     // Increment the shared savings when money is "given"
-    addMoney(amount); 
-    
+    addMoney(amount);
+
     syncAction('MONEY_RESPONSE', { amount, type: 'GIVE', reqId });
     showNotif("Money Given! 💖", "ni kosam em ayina ra");
 }
@@ -269,7 +269,7 @@ document.body.appendChild(partnerCursor);
 socket.on('action', ({ type, payload, identity }) => {
     if (identity === myIdentity) return;
     const partnerAvatar = document.getElementById('partnerAvatar');
-    switch(type) {
+    switch (type) {
         case 'CHAT_MSG': appendBubble(payload.text, 'theirs'); break;
         case 'CLEAR_CHAT': messageArea.innerHTML = ''; break;
         case 'MOOD_CHANGE': partnerAvatar.innerText = payload.emoji; break;
@@ -281,7 +281,7 @@ socket.on('action', ({ type, payload, identity }) => {
         case 'CRAVINGS_CLOSE': cravingsModal.classList.remove('active'); break;
         case 'CRAVINGS_UPDATE': cravingsItems.innerHTML = payload.html; break;
         case 'MONEY_UPDATE': updateMoneyUI(payload.amount); break;
-        case 'MONEY_REQUEST': 
+        case 'MONEY_REQUEST':
             showNotif(`₹${payload.amount} requested!`, `From ${identity}: "I need some love (and cash) 💸"`);
             addRequestToList(payload.amount, payload.id, identity);
             break;
