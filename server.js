@@ -12,6 +12,9 @@ const io = new Server(server, {
 // Serve static files from the current directory
 app.use(express.static(__dirname));
 
+// Health check for Railway
+app.get('/health', (req, res) => res.status(200).send('OK'));
+
 // Simple in-memory storage for room state
 const roomStates = {
   'ajjjo-abhijeet-jenny': {
