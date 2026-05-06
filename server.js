@@ -72,6 +72,11 @@ io.on('connection', (socket) => {
 });
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, "0.0.0.0", () => {
-  console.log(`AJJJO Server running on port ${PORT}`);
+console.log(`Attempting to start server on port ${PORT}...`);
+
+server.listen(PORT, '0.0.0.0', () => {
+  console.log('------------------------------------');
+  console.log(`🚀 AJJJO Server is LIVE on port ${PORT}`);
+  console.log(`🏠 Health check: http://0.0.0.0:${PORT}/health`);
+  console.log('------------------------------------');
 });
