@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJJJO | ABHIJEET & JENNY ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Nunito:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-card">
+            <div class="tape-label">✨ identification required ✨</div>
+            <h2 class="login-title">AJJJO</h2>
+            <p class="login-subtitle">Enter your secret key to enter our world</p>
+            <div class="input-wrapper">
+                <input type="password" id="entryKey" placeholder="your secret key..." autocomplete="off">
+                <span class="heart-mask">💖</span>
+            </div>
+            <button id="loginBtn" class="btn btn-share">Enter World 💌</button>
+            <div id="loginError" class="login-error">Incorrect key, try again love!</div>
+        </div>
+    </div>
+
+    <div class="browser-container" style="display: none;" id="mainApp">
+        <!-- Top Browser Chrome Bar -->
+        <div class="browser-bar">
+            <div class="browser-dots">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div class="url-bar">ajjjo.love / ABHIJEET-JENNY ✨</div>
+            <button class="share-btn">share 💌</button>
+        </div>
+
+        <!-- Main Canvas -->
+        <main class="main-canvas">
+            <!-- Decorative Layer -->
+            <div class="decorative-layer">
+                <div class="flight-path path-1"></div>
+                <div class="flight-path path-2"></div>
+                <div class="sticker s-plane">✈️</div>
+                <div class="sticker s-star">⭐</div>
+                <div class="sticker s-pin">📍</div>
+                <div class="sticker s-music">🎵</div>
+                <div class="floating-heart h-1">❤️</div>
+                <div class="floating-heart h-2">💜</div>
+                <div class="floating-heart h-3">🩷</div>
+                <div class="tape tape-1"></div>
+                <div class="tape tape-2"></div>
+            </div>
+
+            <!-- Logo Section -->
+            <header class="logo-section">
+                <div class="tape-label">✨ <span id="welcomeNames">ABHIJEET & JENNY</span>'S world ✨</div>
+                <h1 class="main-logo">AJJJO</h1>
+                <p class="subtitle">long distance · close at heart</p>
+            </header>
+
+            <!-- Notification Popup -->
+            <div class="notification-popup" id="mainNotif" onclick="popHearts(event)">
+                <div class="notif-icon">🤗</div>
+                <div class="notif-text">
+                    <div class="notif-title">New cuddle request!</div>
+                    <div class="notif-subtitle">Click to accept and send love back</div>
+                </div>
+            </div>
+
+            <!-- Two-Column Layout -->
+            <div class="grid-layout">
+                <!-- Left Column -->
+                <div class="col left-col">
+                    <!-- Avatar Section -->
+                    <div class="section-label">THE TWO OF US</div>
+                    <div class="avatar-card" onclick="popHearts(event)">
+                        <div class="avatar-row">
+                            <div class="avatar-wrapper">
+                                <div class="avatar you" id="myAvatar">🐰</div>
+                                <div class="avatar-name" id="myNameLabel">YOU</div>
+                            </div>
+                            <div class="heart-pulse">💗</div>
+                            <div class="avatar-wrapper">
+                                <div class="avatar them" id="partnerAvatar">😴</div>
+                                <div class="avatar-name" id="partnerNameLabel">THEM</div>
+                            </div>
+                        </div>
+                        <div class="distance-text">📍 3500km apart · together 4years</div>
+                    </div>
+                    <div class="mood-pills">
+                        <div class="mood-pill" onclick="popHearts(event)">🐸 sleepy</div>
+                        <div class="mood-pill active" onclick="popHearts(event)">🐰 happy</div>
+                        <div class="mood-pill" onclick="popHearts(event)">☁️ missing u</div>
+                        <div class="mood-pill" onclick="popHearts(event)">🥔 grumpy</div>
+                        <div class="mood-pill" onclick="popHearts(event)">🌙 dreamy</div>
+                    </div>
+
+                    <!-- Chat Section -->
+                    <div class="section-label">WHISPERS</div>
+                    <div class="chat-window">
+                        <div class="chat-header">
+                            <span class="chat-avatar" id="chatAvatarEmoji">🐻</span>
+                            <div class="chat-info">
+                                <div class="chat-name" id="chatPartnerName">JENNY</div>
+                                <div class="chat-status">ONLINE · TYPING...</div>
+                            </div>
+                            <button class="clear-chat-btn" id="clearChat">clear</button>
+                        </div>
+                        <div class="message-area" id="messageArea">
+                            <div class="typing-indicator">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="chat-input-row">
+                            <input type="text" id="chatInput" placeholder="write something cute..." autocomplete="off">
+                            <button class="send-btn" id="sendBtn">💌</button>
+                        </div>
+                    </div>
+
+                    <!-- Need Money Section -->
+                    <div class="section-label">💸 NEED MONEY?</div>
+                    <div class="money-card" onclick="popHearts(event)">
+                        <div class="money-emoji">💰</div>
+                        <div class="money-content">
+                            <div class="money-title">Couple Savings</div>
+                            <div class="money-amount">₹<span id="moneyVal">0.00</span></div>
+                            <div class="money-buttons">
+                                <button class="mini-btn add" onclick="addMoney(10)">+ ₹10</button>
+                                <button class="mini-btn req" onclick="requestMoney()">Request 💸</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="moneyRequestList" class="request-list-container"></div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col right-col">
+
+
+                    <!-- Polaroid Cards -->
+                    <div class="polaroid-row">
+                        <div class="polaroid p-1" id="foodCravings" onclick="popHearts(event)">
+                            <div class="p-tape"></div>
+                            <div class="p-img" style="background: #FFB6D9">🍔</div>
+                            <div class="p-caption">food cravings</div>
+                        </div>
+                        <div class="polaroid p-2" id="movieNight" onclick="popHearts(event)">
+                            <div class="p-tape"></div>
+                            <div class="p-img" style="background: #B8A4FF">🍿</div>
+                            <div class="p-caption">watchlist</div>
+                        </div>
+                    </div>
+
+                    <!-- Note + Phone -->
+                    <div class="bottom-widgets">
+                        <div class="note-card" onclick="popHearts(event)">
+                            <div class="pin">📌</div>
+                            <div class="note-content" id="homeNote" contenteditable="true"></div>
+                        </div>
+                        <div class="retro-phone" id="retroPhone" onclick="popHearts(event)">
+                            <div class="phone-screen">
+                                <div class="screen-title">AJJJO</div>
+                                <div class="screen-progress">▓▓▓▓▓▓</div>
+                                <div class="screen-msg" id="phoneMsg">CONNECTED!</div>
+                                <div class="screen-from" id="phoneFromName">💌 from: JENNY</div>
+                            </div>
+                            <button class="options-btn">[ VIEW MESSAGE ]</button>
+                            <div class="status-dots">
+                                <span class="s-dot pink"></span>
+                                <span class="s-dot yellow"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Watchlist Note (Hidden by default) -->
+            <div id="watchlistModal" class="watchlist-note">
+                <div class="pin">📌</div>
+                <h3>🎬 Our Watchlist</h3>
+                <ul class="watchlist-items" id="watchlistItems" contenteditable="true"></ul>
+                <button class="close-watchlist" onclick="closeWatchlist()">close</button>
+            </div>
+
+            <!-- Food Cravings Note (Hidden by default) -->
+            <div id="cravingsModal" class="watchlist-note" style="box-shadow: 5px 5px 0 var(--red);">
+                <div class="pin">📌</div>
+                <h3>🍕 Food Cravings</h3>
+                <ul class="watchlist-items" id="cravingsItems" contenteditable="true"></ul>
+                <button class="close-watchlist" onclick="closeCravings()">close</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
